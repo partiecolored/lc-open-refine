@@ -23,9 +23,9 @@ OpenRefine can retrieve data from URLs. This can be used in various ways, includ
 
 As an example, you can look up names against the Virtual International Authority File (VIAF), and retrieve additional information such as dates of birth/death and identifiers.
 
-Typically this is a two step process - firstly a step to retrieve data from a remote service, and secondly to extract the relevant information from the data you have retrieved.
+Typically this is a two step process, firstly a step to retrieve data from a remote service, and secondly to extract the relevant information from the data you have retrieved.
 
-To retrieve data from an external source, from the drop down menu at a column heading use the option 'Edit column->Add column by fetching URLs'.
+To retrieve data from an external source, use the drop down menu at any column heading and select ‘Edit column->Add column by fetching URLs’.
 
 This will prompt you for a GREL expression to create a URL. Usually this would be a URL that uses existing values in your data to build a query. When the query runs OpenRefine will request each URL (for each line) and retrieve whatever data is returned (this may often be structured data, but could be simply HTML).
 
@@ -49,11 +49,15 @@ The next exercise demonstrates this two stage process in full.
 >* Give the column a name e.g. "Journal details"
 >* In the expression box you need to write some GREL where the output of the expression is a URL which can be used to retrieve data (the format of the data could be HTML, XML, JSON, or some other text format)
 >
->In this case we are going to use the CrossRef api (read more about the CrossRef service at [http://www.crossref.org](http://www.crossref.org), read more about the API we are going to use at [https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md)](https://github.com/CrossRef/rest-api-doc/blob/master/rest_api.md))
+>In this case we are going to use the CrossRef API: [https://github.com/CrossRef/rest-api-doc)](https://github.com/CrossRef/rest-api-doc). Read more about the CrossRef service: [http://www.crossref.org](http://www.crossref.org). Note that API providers may impose rate limits or have other requirements for using their data, so it's important to check the site's documentation. To comply with API rate limits, use the Throttle Delay setting to specify the number of milliseconds between URL requests. CrossRef, for instance, [asks users](https://github.com/CrossRef/rest-api-doc#etiquette) to "specify a User-Agent header that properly identifies your script or tool and that provides a means of contacting you via email using 'mailto:'." User-agent headers provide administrators with user information that facilitates better administration and moderation of the API, and it is generally good etiquette to include a header with any API request.
+>
+>To edit your User-Agent header:
+>* Click 'Show' (next to 'HTTP headers to be used when fetching URLs'). Note that OpenRefine has already populated the 'User-Agent' field with information about the version of OpenRefine you are using; it should look similar to ```OpenRefine 3.2 [55c921a]``` but with some variation.
+>* At the end of the existing text, add ```; mailto:address@library.edu```, using your own email address. The full User-Agent field should now be similar to ```OpenRefine 3.2 [55c921a]; mailto:address@library.edu``` but reflect your version information and email address.
 >
 >The syntax for requesting journal information from CrossRef is ```http://api.crossref.org/journals/{ISSN}``` where {ISSN} is replaced with the ISSN of the journal
 >
->* In the expression box type the GREL ```"http://api.crossref.org/journals/"+value```
+>* In the expression box type the GREL ```"https://api.crossref.org/journals/"+value```
 >* Click 'OK'
 >
 >You should see a message at the top on the OpenRefine screen indicating it is fetching some data, and how far it has got. Wait for this to complete. Fetching data for a single row should take only ten seconds or so, but fetching data for all rows will take longer. You can speed this up by modifying the "Throttle Delay" setting in the 'Add column by fetching URLs' dialog which controls the delay between each URL request made by OpenRefine. This is defaulted to a rather large 5000 milliseconds (5 seconds).
@@ -79,9 +83,9 @@ There are a few services where you can find an OpenRefine Reconciliation option 
 
 In other cases people have built reconciliation applications for a specific service which you can download and run yourself. These vary in how they work, and what it takes to run them locally. For example there are multiple reconciliation applications for VIAF. Even for the same service (e.g. VIAF) different reconciliation applications (written by different people)  can work in different ways and potentially give different results - so caveat emptor!
 
-One of the most common ways of using the reconciliation option in OpenRefine is with an extension (see below for more on extensions to OpenRefine) can use linked data sources for reconciliation. The extension is called "RDF Refine" and can be downloaded from [http://refine.deri.ie](http://refine.deri.ie).
+One of the most common ways of using the reconciliation option in OpenRefine is with an extension (see below for more on extensions to OpenRefine) which can use linked data sources for reconciliation. The RDF extension by Stuart Kenny can be downloaded from [https://github.com/stkenny/grefine-rdf-extension/releases](https://github.com/stkenny/grefine-rdf-extension/releases).
 
-There also exist extensions to do reconciliation against local data such as csv files (see [http://okfnlabs.org/reconcile-csv/](http://okfnlabs.org/reconcile-csv/)) and maintained lists of values (see [http://okfnlabs.org/projects/nomenklatura/index.html](http://okfnlabs.org/projects/nomenklatura/index.html)).
+Other extensions are available to do reconciliation against local data such as csv files (see [http://okfnlabs.org/reconcile-csv/](http://okfnlabs.org/reconcile-csv/)) and maintained lists of values (see [http://okfnlabs.org/projects/nomenklatura/index.html](http://okfnlabs.org/projects/nomenklatura/index.html)).
 
 For more information on using Reconciliation services see [https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API](https://github.com/OpenRefine/OpenRefine/wiki/Reconciliation-Service-API)
 
@@ -115,7 +119,7 @@ For more information on using Reconciliation services see [https://github.com/Op
 >
 >* Close the 'Publisher: best candidate's score' facet, but leave the 'Publisher: Judgement' facet open
 >
->If you look at the Publisher column, you should see some cells have found one or more matches - the potential matches are show in a list in each cell. Next to each potential match there is a 'tick' and a 'double tick'. To accept a reconciliation match you can use the 'tick' options in cells. The 'tick' accepts the match for the single cell, the 'double tick' accepts the match for all identical cells.
+>If you look at the Publisher column, you should see some cells have found one or more matches - the potential matches are shown in a list in each cell. Next to each potential match there is a 'tick' and a 'double tick'. To accept a reconciliation match you can use the 'tick' options in cells. The 'tick' accepts the match for the single cell, the 'double tick' accepts the match for all identical cells.
 >
 >* Create a text facet on the Publisher column
 >* Choose 'International Union of Crystallography'
@@ -126,7 +130,7 @@ For more information on using Reconciliation services see [https://github.com/Op
 >* This will accept this as a match for all cells - you should see the other options all disappear
 >* Check the 'Publisher: Judgement' facet. This should now show that 858 items are 'matched' (if this does not update, try refreshing the facets)
 >
->We could do these one by one, but if we are confident with matches, there is an option to accept all:
+>We could do these one by one, but if we are confident with the matches, there is an option to accept all:
 >
 >* Remove all filters/facets from the project so all rows display
 >* In the Publisher column use the dropdown menu to choose 'Reconcile->Actions->Match each cell to its best candidate'
@@ -142,9 +146,7 @@ For more information on using Reconciliation services see [https://github.com/Op
 ## Extensions
 The functionality in OpenRefine can be enhanced by ‘extensions’ which can be downloaded and installed to add functionality to your OpenRefine installation.
 
-A list of Extensions (not necessarily complete) is given on the OpenRefine downloads page at [http://openrefine.org/download.html](http://openrefine.org/download.html)
-
-One of these extensions tries to work around the limitation of Reconciliation services described above, by making it possible to use a reconciliation service against ‘linked data’ sources which have SPARQL endpoints. For more information on this see the ‘RDF Extension’ at [http://refine.deri.ie](http://refine.deri.ie). An example of how this works is given in more detail at [http://refine.deri.ie/showcases](http://refine.deri.ie/showcases).
+A list of Extensions (not necessarily complete) is given on the OpenRefine downloads page at [http://openrefine.org/download.html](http://openrefine.org/download.html).
 
 ## Using the ‘cross’ function to lookup data in other OpenRefine projects
 As well as looking up data in external systems using the methods described above, it is also possible to look up data in other OpenRefine projects on the same computer. This is done using the ‘cross’ function.
@@ -155,4 +157,4 @@ As it returns the whole row for each match, you can use a transformation to extr
 
 You can use this function to compare the contents of two OpenRefine projects, or to use data between the two projects.
 
-The [VIB-Bits extension](https://www.bits.vib.be/index.php/software-overview/openrefine) adds a number of very useful functions to OpenRefine including a way of using the 'cross' function with simply point-and-click functionality which makes looking up data from other projects significantly simpler.
+The [VIB-Bits extension](https://www.bits.vib.be/index.php/software-overview/openrefine) adds a number of very useful functions to OpenRefine including a way of using the 'cross' function with simply point-and-click functionality which makes looking up data from other projects much easier.

@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "Instructor Notes"
-permalink: /guide/
 ---
 
 ____
@@ -10,7 +9,11 @@ ____
 ____
 ## Making a handout
 
-Librarians like handouts. To make a handout for this lesson, adapt/print from [https://librarycarpentry.github.io/lc-open-refine/reference.html](https://librarycarpentry.github.io/lc-open-refine/reference.html).
+Adapt/print from:  
+
+* [Library Carpentry Reference Page](https://librarycarpentry.org/lc-open-refine/reference.html)
+* [Instructor Draft Notes](https://github.com/LibraryCarpentry/lc-open-refine/blob/gh-pages/files/draft-instructor-notes.md)
+* [Introduction to OpenRefine by Owen Stephens](http://www.meanboyfriend.com/overdue_ideas/wp-content/uploads/2014/11/Introduction-to-OpenRefine-handout-CC-BY.pdf)
 
 ____
 # General notes on OpenRefine
@@ -32,4 +35,6 @@ ____
   - Change the working directory to the OpenRefine folder at "C:\Users\JaneDoe"
   - Run openrefine.exe
 
-* If a learner is unable to install OpenRefine on their computer due to IT restrictions for example, there are cloud services available such as [https://labs.cognitiveclass.ai/tools/openrefine/](https://labs.cognitiveclass.ai/tools/openrefine/) and [http://refinepro.com/](http://refinepro.com/) that they could try. 
+* If a learner is unable to install OpenRefine on their computer due to IT restrictions for example, there are cloud services available that they could try:
+  - [openrefineder](https://github.com/betatim/openrefineder/) using MyBinder [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/betatim/openrefineder/077bbff?urlpath=%2Fopenrefine) (OpenRefine 3.1, free to use without registration, [restricted](https://mybinder.readthedocs.io/en/latest/faq.html#how-much-memory-am-i-given-when-using-binder) to 1-2 GB RAM and server will be deleted after 10 minutes of inactivity)
+  - [openrefineder](https://github.com/betatim/openrefineder/) using MyBinder [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/betatim/openrefineder/79aeff9?urlpath=%2Fopenrefine) (OpenRefine 3.2, same restrictions as above)

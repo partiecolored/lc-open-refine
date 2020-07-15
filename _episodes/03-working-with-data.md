@@ -16,7 +16,7 @@ keypoints:
 - "Most options to work with data in OpenRefine are accessed through a drop down menu at the top of a data column"
 - "When you select an option in a particular column (e.g. to make a change to the data), it will effect all the cells in that column"
 - "OpenRefine has a Records mode which links together multiple rows into a single record"
-- "Splitting and joining multi-valued cells cleaning the individual values within them"
+- "Split and join multi-valued cells to modify the individual values within them"
 - "When creating multi-valued cells in your data, choose a separator that will not appear in the data values"
 ---
 
@@ -66,7 +66,7 @@ Modifying cells will be covered in future lessons, but for now we will cover how
 * Click `OK` to join the Authors cells back together
 
 You will now see that split rows have gone away - the Authors have been joined into a single cell with the specified delimiter. Our Rows and
-Records values will now be the same since we do not have any more split columns.
+Records values will now be the same since we do not have any more columns with split (multi-valued) cells.
 
 * Click both the `Rows` and `Records` options and observe how the numbers of Rows and Records are equal
 
@@ -135,7 +135,7 @@ Splitting on a comma will not work with Authors because the names may include co
 > > 1. The subject words/headings were previously delimited with the pipe ( \| ) character
 > > 2. To join the split subject cells back to a single cell you need to:
 > > * Click the dropdown menu at the top of the Subjects column
-> > * Choose 'Join cells->Join multi-valued cells'
+> > * Choose 'Edit cells->Join multi-valued cells'
 > > * In the prompt type the ( \| ) symbol and click 'OK'
 > {: .solution}
 {: .challenge}
